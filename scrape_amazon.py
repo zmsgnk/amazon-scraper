@@ -4,7 +4,6 @@
 from bs4 import BeautifulSoup
 import urllib2
 from openpyxl import Workbook
-from openpyxl.cell import get_column_letter
 from datetime import datetime
 import time
 import sys
@@ -23,8 +22,8 @@ def scrape_bestseller(url):
 		brand = brand.replace('\n', '')
 		tmp.append(brand)
 
-	    ## title 
-		zg_title = item.find('div', {'class': 'zg_title'})
+	    ## title
+	    zg_title = item.find('div', {'class': 'zg_title'})
 		title = zg_title.string.replace('\n', '')
 		tmp.append(title)
 
