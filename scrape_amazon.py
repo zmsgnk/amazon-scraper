@@ -24,7 +24,7 @@ def scrape_bestseller(soup):
 	for item in soup.findAll('div', {'class': 'zg_item_normal'}): 
 		tmp = []
 
-	    ## title 
+	    	## title 
 		zg_title = item.find('div', {'class': 'zg_title'})
 		title = zg_title.string.replace('\n', '')
 		tmp.append(title)
@@ -55,10 +55,3 @@ def scrape_bestseller(soup):
 		result.append(tmp)
 		
 	return result
-
-
-		
-		
-		
-
-
