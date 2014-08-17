@@ -13,9 +13,14 @@ def scrape_bestseller(url):
 	html = urllib2.urlopen(url).read().decode('shift-jis')
 	soup = BeautifulSoup(html)	
 
+	rank = 1
 	result = []
 	for item in soup.findAll('div', {'class': 'zg_item_normal'}): 
 		tmp = []
+
+		## ranking
+		tmp.append(rank)
+		rank += 1
 
 		## brand
 		brand = item.find('div', {'class': 'zg_byline'}).string
@@ -65,7 +70,7 @@ if __name__ == '__main__':
 
 	data = {}
 	for category in categories:
-		tmp = [["ブランド", "商品名", "URL", "参考価格", "価格"]]
+		tmp = [["ランキング", "ブランド", "商品名", "URL", "参考価格", "価格"]]
 		for page_num in xrange(5):
 			url = "http://www.amazon.co.jp/gp/bestsellers/%s/#%s" % (category, str(page_num+1))
 			result = scrape_bestseller(url)
