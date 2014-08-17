@@ -23,8 +23,11 @@ def scrape_bestseller(url):
 		rank += 1
 
 		## brand
-		brand = item.find('div', {'class': 'zg_byline'}).string
-		brand = brand.replace('\n', '')
+		try:
+			brand = item.find('div', {'class': 'zg_byline'}).string
+			brand = brand.replace('\n', '')
+		except AttributeError:
+			brand = "NA"
 		tmp.append(brand)
 
 		## title
