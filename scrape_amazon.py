@@ -31,13 +31,19 @@ def scrape_bestseller(url):
 		tmp.append(brand)
 
 		## title
-		zg_title = item.find('div', {'class': 'zg_title'})
-		title = zg_title.string.replace('\n', '')
+		try:
+			zg_title = item.find('div', {'class': 'zg_title'})
+			title = zg_title.string.replace('\n', '')
+		except AttributeError: 
+			title = "NA"
 		tmp.append(title)
 
 		## link
-		link = zg_title.find('a').get('href')
-		link = link.replace('\n', '')
+		try:
+			link = zg_title.find('a').get('href')
+			link = link.replace('\n', '')
+		except AttributeError:
+			link = "NA"
 		tmp.append(link)
 
 		## list price
@@ -49,8 +55,11 @@ def scrape_bestseller(url):
 		tmp.append(list_price)
 
 		## price
-		price = item.find('span', {'class': 'price'}).find('b').string
-		# price = prettify_price(price)
+		try:
+			price = item.find('span', {'class': 'price'}).find('b').string
+  		    # price = prettify_price(price)
+  		except AttributeError:
+  			price = "NA"
 		tmp.append(price)
 
 		result.append(tmp)
@@ -58,11 +67,11 @@ def scrape_bestseller(url):
 	return result
 
 
-# def prettify_price(price):
-# 	price = price.replace(u'\uffe5 ', '')
-# 	price = price.replace(',', '')
-# 	price = int(price)
-# 	return(price)
+def prettify_price(price):
+	price = price.replace(u'\uffe5 ', '')
+	price = price.replace(',', '')
+	price = int(price)
+	return(price)
 
 		
 if __name__ == '__main__':
