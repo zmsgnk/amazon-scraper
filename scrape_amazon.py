@@ -40,14 +40,14 @@ def scrape_bestseller(url):
 		## list price
 		try:
 			list_price = item.find('span', {'class': 'listprice'}).string
-			list_price = prettify_price(list_price)
+			# list_price = prettify_price(list_price)
 		except AttributeError:
 			list_price = 'NA'
 		tmp.append(list_price)
 
 		## price
 		price = item.find('span', {'class': 'price'}).find('b').string
-		price = prettify_price(price)
+		# price = prettify_price(price)
 		tmp.append(price)
 
 		result.append(tmp)
@@ -55,11 +55,11 @@ def scrape_bestseller(url):
 	return result
 
 
-def prettify_price(price):
-	price = price.replace(u'\uffe5 ', '')
-	price = price.replace(',', '')
-	price = int(price)
-	return(price)
+# def prettify_price(price):
+# 	price = price.replace(u'\uffe5 ', '')
+# 	price = price.replace(',', '')
+# 	price = int(price)
+# 	return(price)
 
 		
 if __name__ == '__main__':
